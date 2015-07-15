@@ -3,10 +3,11 @@ var Router = require('react-router');
 var UserProfile = require('./Github/UserProfile');
 var Repos = require('./Github/Repos');
 var Notes = require('./Notes/Notes');
-
+var ReactFireMixin = require('reactfire');
+var Firebase = require('firebase');
 
 var Profile = React.createClass({
-  mixins: [Router.State],
+  mixins: [Router.State, ReactFireMixin],
   getInitialState: function() {
     return {
       notes: ['Note1', 'Note2'],
@@ -14,11 +15,18 @@ var Profile = React.createClass({
       repos: ['Repo1', 'Repo2']
     };
   },
+  componentDidMount: function() {
+    this.ref = new Firebase('https://gh-react-notetaker2.firebaseIO.com');
+    var childRef = this.ref.child(this.getParams().username);
+    this.bindAsArray(childRef, 'notes');
+  },
+  componentWillUnmount: function() {
+    this.unbind('notes');
+  },
   render: function() {
     var username = this.getParams().username;
     return (
       <div className="row">
-        {username}
         <div className="col-md-4">
           <UserProfile username={username} bio={this.state.bio} />
         </div>
