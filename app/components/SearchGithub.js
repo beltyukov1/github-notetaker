@@ -3,10 +3,11 @@ var Router = require('react-router');
 
 var SearchGithub = React.createClass({
   mixins: [Router.Navigation],
-  handleSubmit: function() {
+  handleSubmit: function(e) {
     var username = this.refs.username.getDOMNode().value;
     this.refs.username.getDOMNode().value = '';
     this.transitionTo('profile', {username: username});
+    e.preventDefault();
   },
   render: function() {
     return (
@@ -16,13 +17,12 @@ var SearchGithub = React.createClass({
             <input type="text" className="form-control" ref="username" />
           </div>
           <div className="form-group col-sm-5">
-            <button type="submit" className="btn btn-block btn-primary">Search GitHub </button>
+            <button type="submit" className="btn btn-block btn-primary">Search GitHub</button>
           </div>
         </form>
       </div>
     );
   }
-
 });
 
 module.exports = SearchGithub;
