@@ -1,10 +1,11 @@
-var React = require('react');
-var RouteHandler = require('react-router').RouteHandler;
-var SearchGithub = require('./SearchGithub');
+/*jshint esnext: true */
 
-var Main = React.createClass({
+import React from 'react';
+import { RouteHandler } from 'react-router';
+import SearchGithub from './SearchGithub';
 
-  render: function() {
+class Main extends React.Component {
+  render() {
     return (
       <div>
         <div className="main-container">
@@ -14,12 +15,12 @@ var Main = React.createClass({
             </div>
           </nav>
           <div className="container">
-            <RouteHandler />
+            <RouteHandler {...this.props} />
           </div>
         </div>
       </div>
     );
   }
-});
+}
 
-module.exports = Main;
+export default Main;

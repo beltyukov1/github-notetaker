@@ -1,11 +1,9 @@
-var React = require('react');
+/*jshint esnext: true */
 
-var UserProfile = React.createClass({
-  propTypes: {
-    username: React.PropTypes.string.isRequired,
-    bio: React.PropTypes.object.isRequired
-  },
-  render: function() {
+import React from 'react';
+
+class UserProfile extends React.Component {
+  render() {
     return (
       <div>
         <h3> User Profile </h3>
@@ -24,7 +22,11 @@ var UserProfile = React.createClass({
       </div>
     );
   }
+}
 
-});
+UserProfile.propTypes = {
+  username: React.PropTypes.string.isRequired,
+  bio: React.PropTypes.object.isRequired
+};
 
-module.exports = UserProfile;
+export default UserProfile;
