@@ -44,14 +44,26 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/*jshint esnext: true */
+
 	'use strict';
 
-	var React = __webpack_require__(1);
-	var Router = __webpack_require__(157);
-	var routes = __webpack_require__(196);
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	Router.run(routes, function (Root) {
-	  React.render(React.createElement(Root, null), document.getElementById('app'));
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(157);
+
+	var _reactRouter2 = _interopRequireDefault(_reactRouter);
+
+	var _configRoutes = __webpack_require__(196);
+
+	var _configRoutes2 = _interopRequireDefault(_configRoutes);
+
+	_reactRouter2['default'].run(_configRoutes2['default'], function (Root, state) {
+	  _react2['default'].render(_react2['default'].createElement(Root, state), document.getElementById('app'));
 	});
 
 /***/ },
@@ -23544,22 +23556,41 @@
 /* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/*jshint esnext: true */
+
 	'use strict';
 
-	var React = __webpack_require__(1);
-	var Main = __webpack_require__(197);
-	var Home = __webpack_require__(199);
-	var Profile = __webpack_require__(200);
-	var Router = __webpack_require__(157);
-	var DefaultRoute = Router.DefaultRoute;
-	var Route = Router.Route;
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
 
-	module.exports = React.createElement(
-	  Route,
-	  { name: 'app', path: '/', handler: Main },
-	  React.createElement(Route, { name: 'profile', path: 'profile/:username', handler: Profile }),
-	  React.createElement(DefaultRoute, { handler: Home })
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _componentsMain = __webpack_require__(197);
+
+	var _componentsMain2 = _interopRequireDefault(_componentsMain);
+
+	var _componentsHome = __webpack_require__(199);
+
+	var _componentsHome2 = _interopRequireDefault(_componentsHome);
+
+	var _componentsProfile = __webpack_require__(200);
+
+	var _componentsProfile2 = _interopRequireDefault(_componentsProfile);
+
+	var _reactRouter = __webpack_require__(157);
+
+	exports['default'] = _react2['default'].createElement(
+	  _reactRouter.Route,
+	  { name: 'app', path: '/', handler: _componentsMain2['default'] },
+	  _react2['default'].createElement(_reactRouter.Route, { name: 'profile', path: 'profile/:username', handler: _componentsProfile2['default'] }),
+	  _react2['default'].createElement(_reactRouter.DefaultRoute, { handler: _componentsHome2['default'] })
 	);
+	module.exports = exports['default'];
 
 /***/ },
 /* 197 */
@@ -24457,21 +24488,31 @@
 /* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/*jshint esnext: true */
+
 	'use strict';
 
-	var axios = __webpack_require__(209);
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _axios = __webpack_require__(209);
+
+	var _axios2 = _interopRequireDefault(_axios);
 
 	function getRepos(username) {
-	  return axios.get('https://api.github.com/users/' + username + '/repos');
+	  return _axios2['default'].get('https://api.github.com/users/' + username + '/repos');
 	}
 
 	function getUserInfo(username) {
-	  return axios.get('https://api.github.com/users/' + username);
+	  return _axios2['default'].get('https://api.github.com/users/' + username);
 	}
 
 	var helpers = {
 	  getGithubInfo: function getGithubInfo(username) {
-	    return axios.all([getRepos(username), getUserInfo(username)]).then(function (arr) {
+	    return _axios2['default'].all([getRepos(username), getUserInfo(username)]).then(function (arr) {
 	      return {
 	        repos: arr[0].data,
 	        bio: arr[1].data
@@ -24480,7 +24521,8 @@
 	  }
 	};
 
-	module.exports = helpers;
+	exports['default'] = helpers;
+	module.exports = exports['default'];
 
 /***/ },
 /* 209 */
