@@ -1,9 +1,10 @@
-var React = require('react');
+/*jshint esnext: true */
 
-var NotesList = React.createClass({
+import React from 'react';
 
-  render: function() {
-    var notes = this.props.notes.map(function(note, index) {
+class NotesList extends React.Component {
+  render() {
+    var notes = this.props.notes.map((note, index) => {
       return <li className="list-group-item" key={index}>{note}</li>;
     });
     return (
@@ -12,7 +13,6 @@ var NotesList = React.createClass({
       </ul>
     );
   }
+}
 
-});
-
-module.exports = NotesList;
+export default NotesList;
